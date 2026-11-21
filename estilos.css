@@ -253,6 +253,16 @@ section[id] {
   border-top: 1px dotted var(--texto-suave);
 }
 
+/* Para qué: enlaces al repositorio de GitHub y al canal RSS. */
+.pie-enlaces {
+  margin-top: 0.5rem;
+}
+
+.pie-enlaces a {
+  color: var(--azul);
+  font-weight: 600;
+}
+
 /* Para qué: créditos de imágenes y logotipos, en letra más pequeña. */
 .pie-credito {
   margin-top: 0.5rem;

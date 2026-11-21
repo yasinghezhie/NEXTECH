@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Canal RSS 2.0 de NEXTECH: avisa de las novedades de la web.
+     Cada noticia es un <item> con su title, link, description, pubDate y guid.
+     pubDate va en el formato que exige RSS: día, fecha, hora y zona horaria. -->
+<rss version="2.0">
+  <channel>
+    <title>Noticias de NEXTECH</title>
+    <link>https://yasinghezhie.github.io/NEXTECH/</link>
+    <description>Novedades de NEXTECH, tu web de móviles, ordenadores y gadgets.</description>
+    <language>es-es</language>
+    <lastBuildDate>Sat, 21 Nov 2026 11:00:00 +0100</lastBuildDate>
+
+    <item>
+      <title>Formulario de asesoramiento y vídeo de presentación</title>
+      <link>https://yasinghezhie.github.io/NEXTECH/contacto.html</link>
+      <description>Ya puedes pedirnos consejo desde la página de contacto: cuéntanos qué buscas y tu presupuesto. Además, la portada estrena un vídeo de presentación de NEXTECH.</description>
+      <pubDate>Sat, 21 Nov 2026 10:30:00 +0100</pubDate>
+      <guid>https://yasinghezhie.github.io/NEXTECH/contacto.html</guid>
+    </item>
+
+    <item>
+      <title>Nueva comparativa de móviles y portátiles</title>
+      <link>https://yasinghezhie.github.io/NEXTECH/comparativa.html</link>
+      <description>Hemos puesto cara a cara los móviles y portátiles del catálogo en dos tablas, y añadido una guía en cinco pasos para elegir portátil.</description>
+      <pubDate>Wed, 11 Nov 2026 10:30:00 +0100</pubDate>
+      <guid>https://yasinghezhie.github.io/NEXTECH/comparativa.html</guid>
+    </item>
+
+    <item>
+      <title>Abrimos la sección de ordenadores</title>
+      <link>https://yasinghezhie.github.io/NEXTECH/productos.html#ordenadores</link>
+      <description>El catálogo crece con tres portátiles: uno para estudiar, uno ligero con pantalla OLED y uno para jugar.</description>
+      <pubDate>Fri, 06 Nov 2026 12:30:00 +0100</pubDate>
+      <guid>https://yasinghezhie.github.io/NEXTECH/productos.html#ordenadores</guid>
+    </item>
+
+  </channel>
+</rss>

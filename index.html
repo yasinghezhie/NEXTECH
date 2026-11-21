@@ -9,6 +9,9 @@
   <!-- Favicon en SVG: el icono de la pestaña del navegador -->
   <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 
+  <!-- Canal RSS: los lectores de noticias lo detectan desde aquí -->
+  <link rel="alternate" type="application/rss+xml" title="Noticias de NEXTECH" href="noticias.xml">
+
   <!-- Fuente de Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -122,6 +125,9 @@
       <div class="video">
         <video controls poster="img/poster-intro.webp" preload="metadata" width="1280" height="720">
           <source src="video/intro-nextech.mp4" type="video/mp4">
+          <!-- Segunda versión en WebM: si el navegador no puede con MP4,
+               prueba con esta (los <source> se prueban en orden) -->
+          <source src="video/intro-nextech.webm" type="video/webm">
           Tu navegador no puede reproducir este vídeo.
         </video>
       </div>
@@ -160,6 +166,12 @@
 
   <footer class="pie">
     <p>&copy; 2026 NEXTECH · Yasin Gheziel Lachiri</p>
+    <!-- Enlaces obligatorios del pie: repositorio del proyecto y canal RSS -->
+    <p class="pie-enlaces">
+      <a href="https://github.com/yasinghezhie/NEXTECH" target="_blank" rel="noopener">Código en GitHub</a>
+      ·
+      <a href="noticias.xml">Noticias (RSS)</a>
+    </p>
     <p class="pie-credito">Logotipos de <a href="https://simpleicons.org" target="_blank" rel="noopener">Simple Icons</a> (licencia CC0). Las marcas pertenecen a sus propietarios.</p>
   </footer>
 
