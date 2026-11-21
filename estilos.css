@@ -1,0 +1,1236 @@
+/* ==========================================================================
+   NEXTECH · HOJA DE ESTILOS
+   Autor: Yasin Gheziel Lachiri
+   Una sola hoja para las cuatro páginas (index, productos, comparativa
+   y contacto).
+
+   ÍNDICE
+   1. Variables ................ colores y medidas que se repiten
+   2. Base ..................... reset, modelo de caja y tipografía
+   3. Comunes .................. lo que sale en TODAS las páginas
+      3.1 Cabecera y menú
+      3.2 Accesibilidad (foco visible y texto para lectores de pantalla)
+      3.3 Secciones, botones y utilidades
+      3.4 Etiquetas «Nuevo» / «Oferta»
+      3.5 Pie de página
+   4. Portada (index.html)
+      4.1 Hero con gradiente animado
+      4.2 Cinta infinita de logotipos
+      4.3 Bento grid de destacados
+      4.4 Vídeos (propio y de YouTube)
+      4.5 Lista de ventajas
+   5. Productos (productos.html)
+      5.1 Título de página y accesos a categorías
+      5.2 Rejilla de tarjetas (Grid)
+      5.3 Tarjeta de producto
+      5.4 Precios y ofertas
+   6. Comparativa (comparativa.html)
+      6.1 Tablas
+      6.2 Lista ordenada de pasos
+   7. Contacto (contacto.html)
+      7.1 Distribución (Grid)
+      7.2 Campos del formulario
+      7.3 Radio, checkbox y botón
+      7.4 Datos de contacto (aside)
+   8. Animaciones (@keyframes)
+   9. Responsive (@media)
+   10. Preferencias del usuario (menos movimiento)
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. VARIABLES
+   Para qué: guardar en un solo sitio los colores y medidas de la web.
+   Si quiero cambiar el azul, lo cambio aquí y cambia en toda la web.
+   Se usan con var(--nombre).
+   ========================================================================== */
+:root {
+  --fondo: #0b1120;        /* fondo general de la página (azul casi negro) */
+  --tarjeta: #151e33;      /* fondo de tarjetas, tablas y cajas */
+  --texto: #f1f5f9;        /* texto principal (blanco roto, buen contraste) */
+  --texto-suave: #b6c2d4;  /* texto secundario: descripciones, notas */
+  --azul: #38bdf8;         /* color principal: enlaces, precios, detalles */
+  --morado: #8b5cf6;       /* color de acento: se mezcla con el azul en los degradados */
+  --radio: 16px;           /* redondeo de esquinas de tarjetas y tablas */
+}
+
+
+/* ==========================================================================
+   2. BASE
+   ========================================================================== */
+
+/* Reset y modelo de caja.
+   Para qué: border-box hace que padding y borde se cuenten DENTRO del ancho
+   (un width de 300px mide 300px de verdad). Además quito los márgenes que
+   el navegador pone por defecto para partir de cero.
+   *::before y *::after = también los pseudoelementos. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilo general del documento.
+   Para qué: fuente de Google Fonts (Poppins) con alternativas por si no carga,
+   colores de fondo y texto, y separación entre líneas para leer mejor. */
+body {
+  font-family: 'Poppins', system-ui, Arial, sans-serif;
+  background-color: var(--fondo);
+  color: var(--texto);
+  line-height: 1.6;
+}
+
+
+/* ==========================================================================
+   3. COMUNES (todas las páginas)
+   ========================================================================== */
+
+/* ---------- 3.1 Cabecera y menú ---------- */
+
+/* Barra superior con el logo y el menú.
+   Para qué: sticky la deja pegada arriba al hacer scroll; Flexbox coloca
+   el logo a la izquierda y el menú a la derecha. */
+.cabecera {
+  position: sticky;                          /* se queda arriba al bajar */
+  top: 0;                                    /* ...pegada al borde superior */
+  z-index: 10;                               /* por encima del resto del contenido */
+  display: flex;                             /* logo y menú en una fila */
+  justify-content: space-between;            /* uno a cada extremo */
+  align-items: center;                       /* centrados en vertical */
+  flex-wrap: wrap;                           /* si no caben, bajan de línea */
+  gap: 1rem;
+  padding: 1rem 2rem;
+  background-color: rgba(11, 17, 32, 0.92);  /* rgba: fondo casi opaco, deja intuir lo de detrás */
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5); /* sombra para separarla del contenido */
+}
+
+/* Logo NEXTECH.
+   Para qué: quitar el aspecto de enlace (subrayado) y darle peso de marca. */
+.logo {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 3px;                       /* letras más separadas */
+  color: var(--texto);
+  text-decoration: none;
+}
+
+/* Para qué: pintar en azul la parte «TECH» del logo (va dentro de un span). */
+.logo span {
+  color: var(--azul);
+}
+
+/* Lista del menú.
+   Para qué: Flexbox pone los enlaces en fila y quito los puntos de la lista. */
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+}
+
+/* Cada enlace del menú.
+   Para qué: darles forma de pastilla y preparar la transición del hover. */
+.menu a {
+  display: block;                            /* para que el padding ocupe espacio */
+  padding: 0.4rem 1rem;
+  border-radius: 50px;                       /* forma de pastilla */
+  color: var(--texto);
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease; /* propiedades concretas, nunca all */
+}
+
+/* Para qué: al pasar el ratón, la pastilla se rellena de azul. */
+.menu a:hover {
+  background-color: var(--azul);
+  color: var(--fondo);
+}
+
+/* Para qué: marcar la página en la que estoy (clase "activo" en el HTML).
+   Va DESPUÉS del hover para que, a igual especificidad, gane esta. */
+.menu a.activo {
+  background-color: rgba(56, 189, 248, 0.15);
+  color: var(--azul);
+}
+
+/* ---------- 3.2 Accesibilidad ---------- */
+
+/* Foco visible.
+   Para qué: al navegar con el teclado (tecla Tab) se dibuja un contorno
+   en el enlace que tiene el foco, así se ve dónde estoy. */
+a:focus-visible {
+  outline: 3px solid var(--azul);
+  outline-offset: 3px;                       /* separa el contorno del texto */
+}
+
+/* Texto solo para lectores de pantalla («Antes:», «Ahora:» en los precios).
+   Para qué: el texto no se ve, pero un lector de pantalla sí lo lee,
+   así una persona ciega entiende qué precio es el antiguo y cuál el nuevo. */
+.solo-lector {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);                     /* recorta el contenido hasta hacerlo invisible */
+  white-space: nowrap;
+}
+
+/* ---------- 3.3 Secciones, botones y utilidades ---------- */
+
+/* Contenedor de cada bloque de contenido.
+   Para qué: limitar el ancho a 1100px y centrarlo, para que en pantallas
+   grandes el contenido no quede estirado de lado a lado. */
+.seccion {
+  max-width: 1100px;
+  margin: 0 auto;                            /* auto a los lados = centrado */
+  padding: 4rem 1.5rem;
+}
+
+/* Para qué: títulos de sección centrados y con aire debajo. */
+.seccion h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Para qué: convertir un enlace en botón (Ver productos, Te asesoramos...). */
+.boton {
+  display: inline-block;                     /* acepta padding como una caja */
+  padding: 0.9rem 2.2rem;
+  border-radius: 50px;
+  background-color: var(--fondo);
+  color: var(--texto);
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Para qué: al pasar el ratón el botón sube un poco y su sombra crece. */
+.boton:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+}
+
+/* Para qué: centrar un bloque (los botones del final de cada sección). */
+.centrado {
+  text-align: center;
+  margin-top: 2.5rem;
+}
+
+/* Para qué: al saltar a un ancla (productos.html#moviles), deja 90px
+   arriba para que la cabecera sticky no tape el título de la sección. */
+section[id] {
+  scroll-margin-top: 90px;
+}
+
+/* ---------- 3.4 Etiquetas «Nuevo» / «Oferta» ---------- */
+
+/* Para qué: la pastilla que va en la esquina de tarjetas y casillas.
+   position: absolute la coloca respecto a su padre, que tiene
+   position: relative (.tarjeta y .bento-caja). Sin ese relative,
+   se colocaría respecto a la página entera. */
+.etiqueta {
+  position: absolute;
+  top: 14px;                                 /* 14px desde arriba de la tarjeta */
+  right: 14px;                               /* 14px desde la derecha */
+  padding: 0.2rem 0.8rem;
+  border-radius: 50px;
+  background: linear-gradient(90deg, var(--morado), var(--azul));
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+/* ---------- 3.5 Pie de página ---------- */
+
+/* Para qué: separar el pie del contenido con un borde punteado (dotted). */
+.pie {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: var(--texto-suave);
+  border-top: 1px dotted var(--texto-suave);
+}
+
+/* Para qué: créditos de imágenes y logotipos, en letra más pequeña. */
+.pie-credito {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+}
+
+
+/* ==========================================================================
+   4. PORTADA (index.html)
+   ========================================================================== */
+
+/* ---------- 4.1 Hero con gradiente animado ---------- */
+
+/* Bloque grande de bienvenida.
+   Para qué: un degradado más grande que la caja (200%) que la animación
+   «moverFondo» va desplazando, así parece que los colores se mueven. */
+.hero {
+  text-align: center;
+  padding: 6rem 1.5rem;
+  background: linear-gradient(120deg, var(--morado), var(--azul), var(--morado));
+  background-size: 200% 200%;                /* el doble de grande para poder moverlo */
+  animation: moverFondo 8s ease infinite;    /* 1.ª animación @keyframes */
+}
+
+/* Para qué: la etiqueta «Novedades 2026» con borde discontinuo (dashed)
+   que flota arriba y abajo con la animación «flotar». */
+.aviso {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 0.3rem 1rem;
+  border: 2px dashed rgba(255, 255, 255, 0.7);
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  animation: flotar 3s ease-in-out infinite; /* 2.ª animación @keyframes */
+}
+
+/* Para qué: título principal grande y con líneas juntas. */
+.hero h1 {
+  font-size: 3rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+/* Para qué: que el párrafo no tenga líneas larguísimas y quede centrado. */
+.hero p {
+  max-width: 550px;
+  margin: 0 auto 2rem;
+}
+
+/* ---------- 4.2 Cinta infinita de logotipos ---------- */
+
+/* Para qué: la «ventana» por la que pasa la cinta. overflow: hidden
+   oculta los logos que se salen por los lados. */
+.cinta {
+  overflow: hidden;
+  padding: 1.2rem 0;
+  border-bottom: 1px solid var(--tarjeta);
+  background-color: rgba(21, 30, 51, 0.6);
+}
+
+/* Para qué: la fila de logos que se mueve. Los logos están repetidos dos
+   veces en el HTML; la animación «desplazar» la mueve justo la mitad y
+   vuelve a empezar, así el bucle no se nota. */
+.cinta-pista {
+  display: flex;                             /* logos en una sola fila */
+  width: max-content;                        /* mide lo que ocupan todos los logos */
+  animation: desplazar 20s linear infinite;  /* linear = velocidad constante */
+}
+
+/* Para qué: parar la cinta al pasar el ratón por encima. */
+.cinta:hover .cinta-pista {
+  animation-play-state: paused;
+}
+
+/* Para qué: tamaño y separación de cada logo. Uso margin-right y no gap
+   para que las dos mitades de la cinta midan exactamente lo mismo. */
+.cinta-pista img {
+  height: 48px;
+  width: auto;
+  margin-right: 4rem;
+  opacity: 0.75;                             /* un poco apagados de base */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Para qué: el logo bajo el ratón se ilumina y crece. */
+.cinta-pista img:hover {
+  opacity: 1;
+  transform: scale(1.15);
+}
+
+/* ---------- 4.3 Bento grid de destacados ---------- */
+
+/* Rejilla de casillas de distintos tamaños.
+   Para qué: grid-template-areas «dibuja» el reparto: cada palabra es una
+   celda, y las casillas con el mismo nombre se unen en una sola. */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);     /* 4 columnas iguales */
+  grid-template-rows: 200px 200px;           /* 2 filas de 200px */
+  gap: 1rem;
+  grid-template-areas:
+    "grande grande ancha ancha"
+    "grande grande peq1  peq2";
+}
+
+/* Cada casilla del bento.
+   Para qué: Flexbox en columna para empujar el texto abajo; relative para
+   que su etiqueta «Nuevo»/«Oferta» se coloque respecto a la casilla. */
+.bento-caja {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;                 /* contenido abajo del todo */
+  padding: 1.5rem;
+  border-radius: 20px;
+  background-color: var(--tarjeta);
+  border: 1px solid rgba(56, 189, 248, 0.15);
+  overflow: hidden;                          /* nada se sale de las esquinas redondeadas */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Para qué: la casilla sube y brilla al pasar el ratón. */
+.bento-caja:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px rgba(56, 189, 248, 0.25);
+}
+
+/* Para qué: mandar cada casilla a su zona del dibujo con grid-area,
+   y dar a cada una su propio degradado. */
+.bento-grande {
+  grid-area: grande;                         /* casilla 2x2: iPhone 17 Pro Max */
+  background: linear-gradient(160deg, #1e1b4b, var(--tarjeta));
+}
+
+.bento-ancha {
+  grid-area: ancha;                          /* casilla ancha: Ordenadores */
+  background: linear-gradient(120deg, #0e7490, var(--azul));
+}
+
+.bento-peq1 {
+  grid-area: peq1;                           /* casilla pequeña: Gadgets */
+}
+
+.bento-peq2 {
+  grid-area: peq2;                           /* casilla pequeña: Oferta */
+}
+
+/* Para qué: fondo morado para la casilla de la oferta de la semana. */
+.bento-oferta {
+  background: linear-gradient(140deg, var(--morado), #4c1d95);
+}
+
+/* Para qué: la foto ocupa todo el hueco libre de la casilla grande.
+   flex: 1 la hace crecer; min-height: 0 le permite encogerse si hace falta. */
+.bento-grande img {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  object-fit: cover;                         /* llena el hueco recortando lo que sobre */
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+/* Para qué: la línea pequeña encima del título («Móvil estrella», «Gadgets»...). */
+.bento-categoria {
+  font-size: 0.85rem;
+  color: rgba(241, 245, 249, 0.8);
+}
+
+/* Para qué: tamaño de los títulos de las casillas (más grande en la grande). */
+.bento-caja h3 {
+  font-size: 1.3rem;
+  line-height: 1.3;
+}
+
+.bento-grande h3 {
+  font-size: 1.8rem;
+}
+
+/* Para qué: precio antiguo y nuevo en fila dentro de la casilla de oferta. */
+.bento-precio {
+  display: flex;
+  align-items: baseline;                     /* alinea los dos precios por la base del texto */
+  gap: 0.6rem;
+  margin: 0.4rem 0;
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: #ffffff;
+}
+
+/* Para qué: precio antiguo más pequeño y con raya roja (<del> ya lo tacha). */
+.bento-precio del {
+  font-size: 1rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration-color: #f87171;
+  text-decoration-thickness: 2px;
+}
+
+/* Enlaces «Ver móviles →», «Ver gadgets →»...
+   Para qué: enlace sin subrayado que se desplaza a la derecha con el ratón. */
+.enlace-tarjeta {
+  display: inline-block;                     /* necesario para que transform funcione */
+  margin-top: 1rem;
+  color: var(--azul);
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+/* Para qué: en casillas con fondo azul o morado, el enlace va en blanco
+   porque el azul no se leería. Va después de .enlace-tarjeta para ganarle. */
+.enlace-claro {
+  color: #ffffff;
+}
+
+/* Para qué: la flecha «→» se mueve 5px a la derecha al pasar el ratón. */
+.enlace-tarjeta:hover {
+  transform: translateX(5px);
+}
+
+/* Para qué: dentro del bento el enlace va más pegado al título. */
+.bento-caja .enlace-tarjeta {
+  margin-top: 0.5rem;
+}
+
+/* ---------- 4.4 Vídeos (propio y de YouTube) ---------- */
+
+/* Para qué: caja con proporción 16:9 para el vídeo propio y el iframe. aspect-ratio calcula
+   la altura sola a partir del ancho, así se adapta a móvil y ordenador. */
+.video {
+  max-width: 900px;
+  margin: 0 auto;
+  aspect-ratio: 16 / 9;
+  border-radius: 20px;
+  overflow: hidden;                          /* el iframe respeta las esquinas redondeadas */
+  border: 1px solid rgba(56, 189, 248, 0.15);
+  box-shadow: 0 15px 35px rgba(56, 189, 248, 0.15);
+  background-color: var(--tarjeta);
+}
+
+/* Para qué: que el iframe llene toda la caja y sin el borde por defecto. */
+.video iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Para qué: que el vídeo propio llene la caja 16:9.
+   display: block quita el pequeño hueco que deja debajo un elemento en línea. */
+.video video {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Para qué: el crédito del vídeo, pequeño y centrado debajo. */
+.video-pie {
+  margin-top: 0.8rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--texto-suave);
+}
+
+/* ---------- 4.5 Lista de ventajas («¿Por qué NEXTECH?») ---------- */
+
+/* Para qué: lista sin puntos, estrecha y centrada. */
+.ventajas {
+  max-width: 600px;
+  margin: 0 auto;
+  list-style: none;
+}
+
+/* Para qué: cada ventaja en su caja con una barra azul a la izquierda. */
+.ventajas li {
+  margin-bottom: 1rem;
+  padding: 1rem 1.5rem;
+  border-left: 4px solid var(--azul);
+  border-radius: 8px;
+  background-color: var(--tarjeta);
+}
+
+
+/* ==========================================================================
+   5. PRODUCTOS (productos.html)
+   ========================================================================== */
+
+/* ---------- 5.1 Título de página y accesos a categorías ---------- */
+
+/* Para qué: cabecera de las páginas interiores (Productos y Comparativa). */
+.titulo-pagina {
+  text-align: center;
+  padding: 4rem 1.5rem 1rem;
+}
+
+.titulo-pagina h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.titulo-pagina p {
+  color: var(--texto-suave);
+}
+
+/* Botones «Móviles / Ordenadores / Gadgets».
+   Para qué: Flexbox los pone en fila y centrados; si no caben, bajan. */
+.categorias {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+  list-style: none;
+}
+
+/* Para qué: cada acceso es una pastilla con borde azul. */
+.categorias a {
+  display: block;
+  padding: 0.5rem 1.3rem;
+  border: 1px solid var(--azul);
+  border-radius: 50px;
+  color: var(--texto);
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Para qué: al pasar el ratón la pastilla se rellena de azul. */
+.categorias a:hover {
+  background-color: var(--azul);
+  color: var(--fondo);
+}
+
+/* Para qué: subtítulos dentro de Gadgets («Auriculares», «Relojes»),
+   con una barra azul a la izquierda. */
+.subtitulo {
+  margin: 2.5rem 0 1.2rem;
+  padding-left: 0.8rem;
+  border-left: 4px solid var(--azul);
+  font-size: 1.3rem;
+}
+
+/* Para qué: el primer subtítulo, justo después del h2, no necesita tanto
+   espacio encima. El signo + significa «el que va justo después de». */
+.seccion h2 + .subtitulo {
+  margin-top: 0;
+}
+
+/* ---------- 5.2 Rejilla de tarjetas (Grid) ---------- */
+
+/* Para qué: colocar las tarjetas en 3 columnas iguales (1fr = una parte
+   del espacio). En las @media pasa a 2 y luego a 1 columna. */
+.rejilla {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+/* ---------- 5.3 Tarjeta de producto ---------- */
+
+/* Caja de cada producto.
+   Para qué: position: relative NO mueve la tarjeta, pero sirve de
+   referencia para la etiqueta con position: absolute. */
+.tarjeta {
+  position: relative;
+  padding: 2rem 1.5rem;
+  border-radius: var(--radio);
+  background-color: var(--tarjeta);
+  border: 1px solid rgba(56, 189, 248, 0.15);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Para qué: la tarjeta sube y aparece una sombra azulada con el ratón. */
+.tarjeta:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(56, 189, 248, 0.25);
+}
+
+/* Para qué: separación bajo el nombre del producto. */
+.tarjeta h3 {
+  margin-bottom: 0.5rem;
+}
+
+/* Para qué: los párrafos de la tarjeta en gris suave. */
+.tarjeta p {
+  color: var(--texto-suave);
+}
+
+/* Para qué: Flexbox en columna para centrar todo y poder empujar el
+   precio al final de la tarjeta (ver .precio). */
+.producto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Para qué: tamaño por defecto de una imagen dentro de la tarjeta. */
+.producto img {
+  height: 160px;
+  width: auto;
+  margin-bottom: 1rem;
+}
+
+/* Para qué: las fotos ocupan todo el ancho y miden todas 200px de alto.
+   object-fit: cover recorta la foto para llenar el hueco sin deformarla.
+   Este selector (2 clases) es más específico que .producto img y le gana. */
+.producto .foto-producto {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 0.3rem;
+}
+
+/* Para qué: fotos con fondo blanco (los portátiles). object-fit: contain
+   muestra la foto ENTERA, sin recortar, dentro de una caja blanca. */
+.producto .foto-contener {
+  object-fit: contain;
+  background-color: #ffffff;
+  padding: 0.8rem;
+}
+
+/* Para qué: crédito de una foto debajo de ella, en letra muy pequeña. */
+.tarjeta .credito {
+  font-size: 0.7rem;
+  margin-bottom: 0.8rem;
+}
+
+/* Para qué: el texto en mayúsculas sobre el nombre («Para jugar»...). */
+.tarjeta .tipo {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--azul);
+}
+
+/* Para qué: lista de características sin puntos y en gris. */
+.caracteristicas {
+  list-style: none;
+  margin: 0.5rem 0 1rem;
+  color: var(--texto-suave);
+  font-size: 0.95rem;
+}
+
+/* Para qué: una línea discontinua (dashed) entre característica y característica. */
+.caracteristicas li {
+  padding: 0.3rem 0;
+  border-bottom: 1px dashed rgba(182, 194, 212, 0.25);
+}
+
+/* ---------- 5.4 Precios y ofertas ---------- */
+
+/* Para qué: margin-top: auto empuja el precio al fondo de la tarjeta,
+   así todos los precios quedan a la misma altura aunque el texto varíe. */
+.precio {
+  margin-top: auto;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+/* Para qué: precio en azul. Hace falta «.tarjeta .precio» (2 clases)
+   para ganar a «.tarjeta p», que lo pondría en gris. */
+.tarjeta .precio {
+  color: var(--azul);
+}
+
+/* Para qué: precio antiguo, precio nuevo y descuento en una fila (Flexbox). */
+.precio-oferta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* Para qué: precio antiguo más pequeño, gris y con raya roja. */
+.tarjeta .precio-oferta del {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--texto-suave);
+  text-decoration-color: #f87171;
+  text-decoration-thickness: 2px;
+}
+
+/* Para qué: la pastilla con el porcentaje (-18 %, -20 %...). */
+.descuento {
+  padding: 0.1rem 0.6rem;
+  border-radius: 50px;
+  background: linear-gradient(90deg, var(--morado), var(--azul));
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+
+/* ==========================================================================
+   6. COMPARATIVA (comparativa.html)
+   ========================================================================== */
+
+/* ---------- 6.1 Tablas ---------- */
+
+/* Caja que envuelve cada tabla.
+   Para qué: si la tabla no cabe (móvil), se desliza DENTRO de esta caja
+   con overflow-x: auto, y la página no tiene scroll horizontal. */
+.tabla-contenedor {
+  overflow-x: auto;
+  border-radius: var(--radio);
+  border: 1px solid rgba(56, 189, 248, 0.15);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+}
+
+/* Para qué: la tabla ocupa todo el ancho, pero nunca menos de 600px
+   (por debajo se desliza). border-collapse une los bordes de las celdas. */
+.tabla {
+  width: 100%;
+  min-width: 600px;
+  border-collapse: collapse;
+  background-color: var(--tarjeta);
+}
+
+/* Para qué: el título de la tabla (<caption>) encima de ella. */
+.tabla caption {
+  padding: 1rem;
+  font-weight: 600;
+  color: var(--texto-suave);
+  caption-side: top;
+}
+
+/* Para qué: espacio dentro de cada celda y una línea fina entre filas. */
+.tabla th,
+.tabla td {
+  padding: 0.9rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(182, 194, 212, 0.12);
+}
+
+/* Para qué: degradado en la fila de cabecera. Va en el <tr> y no en cada
+   <th> para que sea UN degradado de lado a lado, no uno por celda. */
+.tabla thead tr {
+  background: linear-gradient(90deg, var(--morado), var(--azul));
+}
+
+/* Para qué: texto de la cabecera en blanco y mayúsculas. */
+.tabla thead th {
+  color: #ffffff;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Para qué: filas pares un poco más claras (efecto cebra) para seguir
+   cada fila con la vista. nth-child(even) = las filas 2, 4, 6... */
+.tabla tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* Para qué: preparar la transición del hover de las filas. */
+.tabla tbody tr {
+  transition: background-color 0.3s ease;
+}
+
+/* Para qué: la fila bajo el ratón se ilumina en azul. */
+.tabla tbody tr:hover {
+  background-color: rgba(56, 189, 248, 0.1);
+}
+
+/* Para qué: marcar la fila recomendada con una barra azul a la izquierda.
+   inset dibuja la sombra por dentro, así no se sale de la tabla. */
+.tabla .destacada {
+  box-shadow: inset 4px 0 0 var(--azul);
+}
+
+/* Para qué: la pastilla «Mejor precio» junto al nombre del modelo. */
+.marca-tabla {
+  display: inline-block;
+  margin-left: 0.4rem;
+  padding: 0.1rem 0.6rem;
+  border-radius: 50px;
+  background-color: var(--azul);
+  color: var(--fondo);
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+/* Para qué: la nota «Precios orientativos» debajo de la tabla. */
+.nota-tabla {
+  margin-top: 0.8rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--texto-suave);
+}
+
+/* ---------- 6.2 Lista ordenada de pasos (<ol>) ---------- */
+
+/* Para qué: quito los números normales de la lista y creo un contador
+   propio llamado «paso» para dibujar los números a mi manera. */
+.pasos {
+  max-width: 750px;
+  margin: 0 auto;
+  list-style: none;
+  counter-reset: paso;                       /* crea el contador y lo pone a 0 */
+}
+
+/* Para qué: cada paso en una caja. Dejo 4.5rem de padding a la izquierda
+   para el círculo del número, y relative para colocarlo con absolute. */
+.pasos li {
+  position: relative;
+  margin-bottom: 1rem;
+  padding: 1.2rem 1.5rem 1.2rem 4.5rem;
+  border-radius: 12px;
+  background-color: var(--tarjeta);
+  color: var(--texto-suave);
+  counter-increment: paso;                   /* cada <li> suma 1 al contador */
+}
+
+/* Para qué: la frase en negrita de cada paso, en blanco para que destaque. */
+.pasos li strong {
+  color: var(--texto);
+}
+
+/* Para qué: el número dentro de un círculo con degradado.
+   ::before crea un elemento antes del contenido del <li>, y
+   content: counter(paso) escribe el valor del contador (1, 2, 3...). */
+.pasos li::before {
+  content: counter(paso);
+  position: absolute;
+  left: 1.2rem;
+  top: 50%;
+  transform: translateY(-50%);               /* lo centra en vertical */
+  width: 2.2rem;
+  height: 2.2rem;
+  display: flex;                             /* centra el número dentro del círculo */
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;                        /* 50% = círculo */
+  background: linear-gradient(135deg, var(--morado), var(--azul));
+  color: #ffffff;
+  font-weight: 700;
+}
+
+
+/* ==========================================================================
+   7. CONTACTO (contacto.html)
+   ========================================================================== */
+
+/* ---------- 7.1 Distribución (Grid) ---------- */
+
+/* Para qué: Grid con dos columnas: el formulario ocupa el doble (2fr)
+   que los datos de contacto (1fr). En tablet pasa a una sola columna. */
+.contacto {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  align-items: start;                        /* cada columna mide lo que su contenido */
+  padding-top: 2rem;
+}
+
+/* Para qué: las dos cajas (formulario y datos) con el mismo aspecto de tarjeta. */
+.formulario-caja,
+.datos-contacto {
+  padding: 2rem;
+  border-radius: var(--radio);
+  background-color: var(--tarjeta);
+  border: 1px solid rgba(56, 189, 248, 0.15);
+}
+
+/* Para qué: títulos de las dos cajas alineados a la izquierda y más pequeños
+   que los de sección (aquí no van centrados como en .seccion h2). */
+.contacto h2 {
+  text-align: left;
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Para qué: el formulario es una rejilla de 2 columnas, así nombre y correo,
+   presupuesto y producto van de dos en dos. */
+.formulario {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+/* Para qué: los elementos con esta clase ocupan las 2 columnas.
+   1 / -1 = desde la primera línea de la rejilla hasta la última. */
+.campo-ancho {
+  grid-column: 1 / -1;
+}
+
+/* ---------- 7.2 Campos del formulario ---------- */
+
+/* Para qué: cada campo es su etiqueta encima y el control debajo (Flexbox en columna). */
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.campo label {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* Para qué: dar a input, select y textarea el estilo oscuro de la web.
+   font: inherit hace que usen Poppins (por defecto usan la fuente del sistema). */
+.campo input,
+.campo select,
+.campo textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid rgba(182, 194, 212, 0.3);
+  border-radius: 10px;
+  background-color: var(--fondo);
+  color: var(--texto);
+  font: inherit;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Para qué: que el usuario solo pueda agrandar el textarea en vertical
+   (en horizontal rompería la rejilla). */
+.campo textarea {
+  resize: vertical;
+}
+
+/* Para qué: el texto de ejemplo (placeholder) más apagado que lo escrito. */
+.campo ::placeholder {
+  color: rgba(182, 194, 212, 0.6);
+}
+
+/* Foco visible en los campos.
+   Para qué: al entrar en un campo (con ratón o con Tab) el borde se pone
+   azul y aparece un halo, así siempre se ve dónde se está escribiendo. */
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+  outline: none;                             /* quito el contorno del navegador... */
+  border-color: var(--azul);                 /* ...y pongo uno propio, bien visible */
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.3);
+}
+
+/* ---------- 7.3 Radio, checkbox y botón ---------- */
+
+/* Para qué: el fieldset con borde discontinuo agrupa visualmente los radio. */
+.grupo-radio {
+  display: flex;                             /* las opciones en fila */
+  flex-wrap: wrap;
+  gap: 0.6rem 1.5rem;
+  padding: 1rem 1.2rem;
+  border: 1px dashed rgba(182, 194, 212, 0.4);
+  border-radius: 10px;
+}
+
+/* Para qué: el título del grupo (legend), con aire a los lados. */
+.grupo-radio legend {
+  padding: 0 0.5rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* Para qué: casilla y su texto en la misma línea, centrados. */
+.opcion {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Para qué: radio y checkbox un poco más grandes y con el azul de la web.
+   accent-color cambia el color del control nativo del navegador. */
+.opcion input {
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: var(--azul);
+  flex-shrink: 0;                            /* que no se aplaste si el texto es largo */
+}
+
+/* Para qué: que se vea en qué radio o checkbox está el foco con el teclado. */
+.opcion input:focus-visible {
+  outline: 3px solid var(--azul);
+  outline-offset: 2px;
+}
+
+.opcion label {
+  color: var(--texto-suave);
+  cursor: pointer;                           /* manita: indica que se puede pulsar */
+}
+
+.nota-form {
+  font-size: 0.8rem;
+  color: var(--texto-suave);
+}
+
+/* Para qué: el botón de enviar usa .boton pero con el degradado de la web.
+   border: none y font: inherit quitan el estilo por defecto de <button>. */
+.boton-enviar {
+  justify-self: start;                       /* no se estira a todo el ancho */
+  border: none;
+  font: inherit;
+  font-weight: 600;
+  background: linear-gradient(90deg, var(--morado), var(--azul));
+  color: #ffffff;
+  cursor: pointer;
+}
+
+/* Para qué: foco visible también en el botón al llegar con Tab. */
+.boton-enviar:focus-visible {
+  outline: 3px solid var(--texto);
+  outline-offset: 3px;
+}
+
+/* ---------- 7.4 Datos de contacto (aside) ---------- */
+
+/* Para qué: lista de datos sin puntos, cada dato separado por una línea punteada. */
+.lista-datos {
+  list-style: none;
+  color: var(--texto-suave);
+}
+
+.lista-datos li {
+  padding: 0.9rem 0;
+  border-bottom: 1px dotted rgba(182, 194, 212, 0.3);
+}
+
+/* Para qué: el nombre de cada dato («Correo», «Horario»...) encima, en azul. */
+.dato-titulo {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--azul);
+}
+
+.lista-datos a {
+  color: var(--texto);
+}
+
+/* Para qué: la caja «¿Qué pasa después?» con fondo degradado suave. */
+.aviso-contacto {
+  margin-top: 1.5rem;
+  padding: 1.2rem;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(56, 189, 248, 0.2));
+}
+
+.aviso-contacto h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.6rem;
+}
+
+.aviso-contacto ol {
+  padding-left: 1.2rem;                      /* hueco para los números de la lista */
+  color: var(--texto-suave);
+  font-size: 0.95rem;
+}
+
+
+/* ==========================================================================
+   8. ANIMACIONES (@keyframes)
+   Para qué: una @keyframes define los pasos de una animación; luego se
+   aplica a un elemento con la propiedad animation.
+   Uso @keyframes y no transition porque estas se repiten solas sin parar;
+   una transition solo ocurre cuando cambia algo (por ejemplo, un :hover).
+   ========================================================================== */
+
+/* Usada en .hero: mueve el degradado de izquierda a derecha y vuelve. */
+@keyframes moverFondo {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Usada en .cinta-pista: mueve la cinta la mitad de su ancho. Justo
+   cuando acaba la primera copia de los logos empieza la segunda. */
+@keyframes desplazar {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Usada en .aviso: sube 8px y vuelve a bajar, como si flotara. */
+@keyframes flotar {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
+}
+
+
+/* ==========================================================================
+   9. RESPONSIVE (@media)
+   Para qué: estas reglas solo se aplican cuando la pantalla mide como
+   máximo el ancho indicado, y cambian la colocación de los elementos.
+   Van al final para que ganen a las reglas de arriba.
+   ========================================================================== */
+
+/* Tablets (hasta 900px) */
+@media (max-width: 900px) {
+
+  /* Tarjetas de productos: de 3 a 2 columnas */
+  .rejilla {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Bento: 2 columnas; la casilla grande arriba ocupando todo el ancho */
+  .bento {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 320px 180px 180px;
+    grid-template-areas:
+      "grande grande"
+      "ancha  ancha"
+      "peq1   peq2";
+  }
+
+  /* Contacto: formulario arriba y datos de contacto debajo */
+  .contacto {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Móviles (hasta 600px) */
+@media (max-width: 600px) {
+
+  /* Cabecera: el menú pasa debajo del logo */
+  .cabecera {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  /* Enlaces del menú centrados */
+  .menu {
+    justify-content: center;
+  }
+
+  /* Portada con menos relleno y título más pequeño para que quepa */
+  .hero {
+    padding: 4rem 1rem;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  /* Tarjetas de productos: una sola columna */
+  .rejilla {
+    grid-template-columns: 1fr;
+  }
+
+  /* Formulario: un campo debajo de otro y menos relleno en las cajas */
+  .formulario {
+    grid-template-columns: 1fr;
+  }
+
+  .formulario-caja,
+  .datos-contacto {
+    padding: 1.5rem 1.2rem;
+  }
+
+  /* Bento: una columna, cada casilla debajo de la anterior */
+  .bento {
+    grid-template-columns: 1fr;
+    grid-template-rows: 300px 160px 160px 160px;
+    grid-template-areas:
+      "grande"
+      "ancha"
+      "peq1"
+      "peq2";
+  }
+}
+
+
+/* ==========================================================================
+   10. PREFERENCIAS DEL USUARIO
+   Para qué: si la persona ha activado «reducir movimiento» en su sistema
+   (por mareos, migrañas o epilepsia), paro las animaciones que se repiten.
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .hero,
+  .aviso,
+  .cinta-pista {
+    animation: none;
+  }
+}

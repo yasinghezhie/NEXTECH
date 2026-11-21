@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto · NEXTECH</title>
+  <meta name="description" content="Contacta con NEXTECH: cuéntanos qué buscas y tu presupuesto y te ayudamos a elegir móvil, ordenador o gadget, gratis.">
+
+  <!-- Favicon en SVG: el icono de la pestaña del navegador -->
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+
+  <!-- Fuente de Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- La misma hoja de estilos que el resto de páginas -->
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+  <!-- Cabecera (igual en las 4 páginas). "activo" marca la página en la que estoy -->
+  <header class="cabecera">
+    <a href="index.html" class="logo">NEX<span>TECH</span></a>
+    <nav>
+      <ul class="menu">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="comparativa.html">Comparativa</a></li>
+        <li><a href="contacto.html" class="activo">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Título de la página -->
+    <section class="titulo-pagina">
+      <h1>Pide asesoramiento</h1>
+      <p>Cuéntanos qué necesitas y te recomendamos el dispositivo que mejor encaja contigo. Es gratis.</p>
+    </section>
+
+    <!-- Contenedor con Grid: formulario a la izquierda y datos de contacto a la derecha -->
+    <div class="seccion contacto">
+
+      <!-- FORMULARIO
+           action="#": no hay servidor que reciba los datos, así que el
+           formulario no se envía a ningún sitio (es un proyecto de clase).
+           method="post": los datos irían ocultos, no en la URL. -->
+      <section class="formulario-caja">
+        <h2>Formulario de contacto</h2>
+
+        <form action="#" method="post" class="formulario">
+
+          <!-- Cada label se une a su campo con for="id". Así, al pulsar en el
+               texto se activa el campo, y el lector de pantalla sabe qué es -->
+          <div class="campo">
+            <label for="nombre">Nombre *</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" autocomplete="name" required>
+          </div>
+
+          <div class="campo">
+            <label for="email">Correo electrónico *</label>
+            <!-- type="email": el navegador comprueba que tenga formato de correo -->
+            <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com" autocomplete="email" required>
+          </div>
+
+          <div class="campo">
+            <label for="presupuesto">Presupuesto máximo (€) *</label>
+            <!-- type="number" con min, max y step: solo acepta números en ese rango -->
+            <input type="number" id="presupuesto" name="presupuesto" min="50" max="5000" step="10" placeholder="Por ejemplo, 800" required>
+          </div>
+
+          <div class="campo">
+            <label for="producto">¿Qué buscas? *</label>
+            <!-- select: lista desplegable. La primera opción vacía obliga a elegir
+                 una de verdad, porque el campo es required -->
+            <select id="producto" name="producto" required>
+              <option value="">Elige una opción</option>
+              <option value="movil">Móvil</option>
+              <option value="portatil">Portátil</option>
+              <option value="auriculares">Auriculares</option>
+              <option value="reloj">Reloj inteligente</option>
+              <option value="otro">Otro</option>
+            </select>
+          </div>
+
+          <!-- FIELDSET + LEGEND: agrupa los radio y les pone un título.
+               Todos los radio tienen el MISMO name ("contactar"), por eso
+               solo se puede marcar uno a la vez (se excluyen entre sí) -->
+          <fieldset class="grupo-radio campo-ancho">
+            <legend>¿Cómo prefieres que te contactemos? *</legend>
+
+            <div class="opcion">
+              <input type="radio" id="por-email" name="contactar" value="email" required checked>
+              <label for="por-email">Por correo</label>
+            </div>
+
+            <div class="opcion">
+              <input type="radio" id="por-telefono" name="contactar" value="telefono">
+              <label for="por-telefono">Por teléfono</label>
+            </div>
+
+            <div class="opcion">
+              <input type="radio" id="por-whatsapp" name="contactar" value="whatsapp">
+              <label for="por-whatsapp">Por WhatsApp</label>
+            </div>
+          </fieldset>
+
+          <div class="campo campo-ancho">
+            <label for="mensaje">Cuéntanos qué necesitas *</label>
+            <!-- textarea: texto de varias líneas. minlength obliga a escribir algo útil -->
+            <textarea id="mensaje" name="mensaje" rows="5" minlength="10" placeholder="Por ejemplo: busco un portátil ligero para clase que me dure toda la mañana" required></textarea>
+          </div>
+
+          <!-- CHECKBOX: casilla independiente. required obliga a marcarla -->
+          <div class="opcion campo-ancho">
+            <input type="checkbox" id="privacidad" name="privacidad" required>
+            <label for="privacidad">Acepto que se usen mis datos solo para responderme *</label>
+          </div>
+
+          <p class="nota-form campo-ancho">Los campos marcados con * son obligatorios.</p>
+
+          <!-- type="submit": al pulsarlo, el navegador comprueba todos los
+               required antes de enviar y avisa del primero que falte -->
+          <button type="submit" class="boton boton-enviar campo-ancho">Enviar consulta</button>
+        </form>
+      </section>
+
+      <!-- ASIDE: información complementaria al formulario (datos de contacto) -->
+      <aside class="datos-contacto">
+        <h2>Otras formas de contacto</h2>
+
+        <ul class="lista-datos">
+          <li>
+            <span class="dato-titulo">Correo</span>
+            <a href="mailto:yghz2610@g.educaand.es">yghz2610@g.educaand.es</a>
+          </li>
+          <li>
+            <span class="dato-titulo">Horario de respuesta</span>
+            De lunes a viernes, de 16:00 a 20:00
+          </li>
+          <li>
+            <span class="dato-titulo">Tiempo de respuesta</span>
+            Menos de 24 horas en días laborables
+          </li>
+        </ul>
+
+        <div class="aviso-contacto">
+          <h3>¿Qué pasa después?</h3>
+          <!-- ol: los pasos tienen un orden -->
+          <ol>
+            <li>Leemos tu consulta.</li>
+            <li>Comparamos los modelos que encajan con tu presupuesto.</li>
+            <li>Te enviamos 2 o 3 recomendaciones explicadas.</li>
+          </ol>
+        </div>
+      </aside>
+
+    </div>
+
+  </main>
+
+  <footer class="pie">
+    <p>&copy; 2026 NEXTECH · Yasin Gheziel Lachiri</p>
+  </footer>
+
+</body>
+</html>

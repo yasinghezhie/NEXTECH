@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Productos · NEXTECH</title>
+  <meta name="description" content="Catálogo de NEXTECH: móviles, ordenadores, auriculares y relojes inteligentes con sus características principales y precios orientativos.">
+
+  <!-- Favicon en SVG: el icono de la pestaña del navegador -->
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+
+  <!-- Fuente de Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- La misma hoja de estilos que la portada -->
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+  <!-- Cabecera (igual en las 4 páginas). "activo" marca la página en la que estoy -->
+  <header class="cabecera">
+    <a href="index.html" class="logo">NEX<span>TECH</span></a>
+    <nav>
+      <ul class="menu">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="productos.html" class="activo">Productos</a></li>
+        <li><a href="comparativa.html">Comparativa</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Título de la página -->
+    <section class="titulo-pagina">
+      <h1>Nuestros productos</h1>
+      <p>Elige una categoría y descubre lo que más nos gusta de cada dispositivo.</p>
+
+      <!-- Accesos rápidos a cada categoría. "#ordenadores" salta a la sección
+           con id="ordenadores" sin cambiar de página -->
+      <ul class="categorias">
+        <li><a href="#moviles">📱 Móviles</a></li>
+        <li><a href="#ordenadores">💻 Ordenadores</a></li>
+        <li><a href="#gadgets">🎧 Gadgets</a></li>
+      </ul>
+    </section>
+
+    <!-- SECCIÓN MÓVILES: el id="moviles" permite enlazar directamente aquí -->
+    <section id="moviles" class="seccion">
+      <h2>📱 Móviles</h2>
+
+      <div class="rejilla">
+
+        <article class="tarjeta producto">
+          <span class="etiqueta">Nuevo</span>
+          <!-- Foto en formato WebP guardada en la carpeta img (ruta relativa) -->
+          <img class="foto-producto" src="img/iphone-17-pro-max.webp" alt="Parte trasera de un iPhone 17 Pro Max plateado con sus tres cámaras, sobre un portátil con el logo de Apple" width="800" height="533">
+          <h3>iPhone 17 Pro Max</h3>
+          <ul class="caracteristicas">
+            <li>Pantalla de 6,9 pulgadas</li>
+            <li>Chip A19 Pro</li>
+            <li>256 GB de almacenamiento</li>
+          </ul>
+          <p class="precio">Desde 1.469 €</p>
+        </article>
+
+        <article class="tarjeta producto">
+          <img class="foto-producto" src="img/galaxy-s25.webp" alt="Samsung Galaxy S25 azul marino visto por delante y por detrás, con sus tres cámaras traseras" width="606" height="432">
+          <h3>Samsung Galaxy S25</h3>
+          <ul class="caracteristicas">
+            <li>Pantalla de 6,2 pulgadas</li>
+            <li>Snapdragon 8 Elite</li>
+            <li>128 GB de almacenamiento</li>
+          </ul>
+          <p class="precio">Desde 909 €</p>
+        </article>
+
+        <article class="tarjeta producto">
+          <span class="etiqueta">Oferta</span>
+          <img class="foto-producto" src="img/pixel-9a.webp" alt="Cuatro Google Pixel 9a vistos por detrás en sus colores negro, blanco porcelana, rosa y lila" width="900" height="600">
+          <h3>Google Pixel 9a</h3>
+          <ul class="caracteristicas">
+            <li>Pantalla de 6,3 pulgadas</li>
+            <li>Chip Google Tensor G4</li>
+            <li>128 GB de almacenamiento</li>
+          </ul>
+          <p class="precio precio-oferta">
+            <del><span class="solo-lector">Antes: </span>549 €</del>
+            <span><span class="solo-lector">Ahora: </span>449 €</span>
+            <span class="descuento">-18 %</span>
+          </p>
+        </article>
+
+      </div>
+
+      <!-- Botón que lleva al formulario de contacto -->
+      <p class="centrado">
+        <a href="contacto.html" class="boton">¿Dudas? Te asesoramos</a>
+      </p>
+    </section>
+
+    <!-- SECCIÓN ORDENADORES: el id="ordenadores" permite enlazar directamente aquí -->
+    <section id="ordenadores" class="seccion">
+      <h2>💻 Ordenadores</h2>
+
+      <div class="rejilla">
+
+        <article class="tarjeta producto">
+          <span class="etiqueta">Nuevo</span>
+          <!-- Imágenes con fondo blanco: la clase foto-contener las muestra enteras -->
+          <img class="foto-producto foto-contener" src="img/macbook-air-m5.webp" alt="MacBook Air plateado abierto, con un fondo de pantalla azul en forma de pétalos" width="154" height="101" loading="lazy">
+          <p class="tipo">Para estudiar y trabajar</p>
+          <h3>MacBook Air 13 M5</h3>
+          <ul class="caracteristicas">
+            <li>Pantalla de 13,6 pulgadas</li>
+            <li>Chip Apple M5</li>
+            <li>16 GB de memoria</li>
+          </ul>
+          <p class="precio">Desde 1.299 €</p>
+        </article>
+
+        <article class="tarjeta producto">
+          <img class="foto-producto foto-contener" src="img/asus-zenbook-14.webp" alt="Portátil ASUS Zenbook 14 azul oscuro abierto, junto a su tapa vista por detrás" width="308" height="238" loading="lazy">
+          <p class="tipo">Ligero y con pantalla OLED</p>
+          <h3>ASUS Zenbook 14 OLED</h3>
+          <ul class="caracteristicas">
+            <li>Pantalla OLED de 14 pulgadas</li>
+            <li>Procesador Intel Core Ultra 7</li>
+            <li>16 GB de memoria</li>
+          </ul>
+          <p class="precio">Desde 999 €</p>
+        </article>
+
+        <article class="tarjeta producto">
+          <span class="etiqueta">Oferta</span>
+          <img class="foto-producto foto-contener" src="img/lenovo-legion-5.webp" alt="Portátil Lenovo Legion 5 gris visto de frente, con el logo Legion en la pantalla" width="459" height="375" loading="lazy">
+          <p class="tipo">Para jugar</p>
+          <h3>Lenovo Legion 5</h3>
+          <ul class="caracteristicas">
+            <li>Pantalla de 15,1 pulgadas a 165 Hz</li>
+            <li>Gráfica NVIDIA GeForce RTX 5060</li>
+            <li>1 TB de almacenamiento SSD</li>
+          </ul>
+          <p class="precio">Desde 1.399 €</p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- SECCIÓN GADGETS: el id="gadgets" es el destino del enlace de la portada -->
+    <section id="gadgets" class="seccion">
+      <h2>🎧 Gadgets</h2>
+
+      <!-- Auriculares -->
+      <h3 class="subtitulo">Auriculares</h3>
+      <div class="rejilla">
+
+        <article class="tarjeta producto">
+          <span class="etiqueta">Nuevo</span>
+          <img class="foto-producto" src="img/airpods-pro-3.webp" alt="AirPods Pro 3 blancos flotando sobre su estuche de carga, sobre fondo blanco" width="900" height="600" loading="lazy">
+          <h3>AirPods Pro 3</h3>
+          <ul class="caracteristicas">
+            <li>Cancelación activa de ruido</li>
+            <li>Sensor de frecuencia cardiaca</li>
+            <li>Hasta 8 horas de batería</li>
+          </ul>
+          <p class="precio">Desde 249 €</p>
+        </article>
+
+        <article class="tarjeta producto">
+          <img class="foto-producto" src="img/airpods-max.webp" alt="AirPods Max en sus cinco colores, uno dentro de otro: blanco estelar, naranja, morado, azul y medianoche" width="900" height="600" loading="lazy">
+          <h3>AirPods Max</h3>
+          <ul class="caracteristicas">
+            <li>Cancelación activa de ruido</li>
+            <li>Audio espacial</li>
+            <li>Hasta 20 horas de batería</li>
+          </ul>
+          <p class="precio">Desde 579 €</p>
+        </article>
+
+        <article class="tarjeta producto">
+          <span class="etiqueta">Oferta</span>
+          <img class="foto-producto" src="img/galaxy-buds3-pro.webp" alt="Un auricular Samsung Galaxy Buds3 Pro plateado de perfil, sobre fondo negro y blanco" width="900" height="600" loading="lazy">
+          <h3>Samsung Galaxy Buds3 Pro</h3>
+          <ul class="caracteristicas">
+            <li>Cancelación activa de ruido</li>
+            <li>Audio de alta resolución</li>
+            <li>Funciones de Galaxy AI</li>
+          </ul>
+          <p class="precio precio-oferta">
+            <del><span class="solo-lector">Antes: </span>249 €</del>
+            <span><span class="solo-lector">Ahora: </span>199 €</span>
+            <span class="descuento">-20 %</span>
+          </p>
+        </article>
+
+      </div>
+
+      <!-- Relojes -->
+      <h3 class="subtitulo">Relojes inteligentes</h3>
+      <div class="rejilla">
+
+        <article class="tarjeta producto">
+          <img class="foto-producto" src="img/apple-watch-series-10.webp" alt="Siete Apple Watch Series 10 en fila con distintos acabados y correas de colores" width="900" height="600" loading="lazy">
+          <h3>Apple Watch Series 10</h3>
+          <ul class="caracteristicas">
+            <li>Pantalla gran angular siempre activa</li>
+            <li>Detección de apnea del sueño</li>
+            <li>Carga rápida</li>
+          </ul>
+          <p class="precio">Desde 449 €</p>
+        </article>
+
+        <article class="tarjeta producto">
+          <span class="etiqueta">Oferta</span>
+          <img class="foto-producto" src="img/galaxy-watch7.webp" alt="Samsung Galaxy Watch7 verde con la esfera mostrando la hora y datos de actividad" width="900" height="600" loading="lazy">
+          <h3>Samsung Galaxy Watch7</h3>
+          <ul class="caracteristicas">
+            <li>Pantalla AMOLED</li>
+            <li>Sensor de salud BioActive</li>
+            <li>Funciones de Galaxy AI</li>
+          </ul>
+          <p class="precio precio-oferta">
+            <del><span class="solo-lector">Antes: </span>319 €</del>
+            <span><span class="solo-lector">Ahora: </span>259 €</span>
+            <span class="descuento">-19 %</span>
+          </p>
+        </article>
+
+        <article class="tarjeta producto">
+          <span class="etiqueta">Nuevo</span>
+          <img class="foto-producto" src="img/huawei-watch-gt-6.webp" alt="Dos Huawei Watch GT 6, uno con correa verde y otro con correa lila" width="900" height="600" loading="lazy">
+          <h3>Huawei Watch GT 6</h3>
+          <ul class="caracteristicas">
+            <li>Pantalla AMOLED</li>
+            <li>GPS de doble frecuencia</li>
+            <li>Hasta 14 días de batería</li>
+          </ul>
+          <p class="precio">Desde 249 €</p>
+        </article>
+
+      </div>
+
+      <p class="centrado">
+        <a href="contacto.html" class="boton">¿Dudas? Te asesoramos</a>
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="pie">
+    <p>&copy; 2026 NEXTECH · Yasin Gheziel Lachiri</p>
+    <!-- Créditos de las imágenes (obligatorio citar la procedencia de las que no son mías) -->
+    <p class="pie-credito">
+      Foto del iPhone 17 Pro Max: <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a> (Licencia de Unsplash).
+      Resto de imágenes de producto: Apple, Samsung, Google, ASUS, Lenovo y Huawei, con fines ilustrativos.
+      Las marcas pertenecen a sus propietarios.
+    </p>
+  </footer>
+
+</body>
+</html>

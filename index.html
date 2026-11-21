@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXTECH · Móviles, ordenadores y gadgets</title>
+  <meta name="description" content="NEXTECH: móviles, ordenadores y gadgets tecnológicos. Novedades, comparativas y asesoramiento.">
+
+  <!-- Favicon en SVG: el icono de la pestaña del navegador -->
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+
+  <!-- Fuente de Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Hoja de estilos (está en la misma carpeta) -->
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+  <!-- Cabecera con logo y menú -->
+  <header class="cabecera">
+    <a href="index.html" class="logo">NEX<span>TECH</span></a>
+    <nav>
+      <ul class="menu">
+        <li><a href="index.html" class="activo">Inicio</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="comparativa.html">Comparativa</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Portada -->
+    <section class="hero">
+      <p class="aviso">Novedades 2026</p>
+      <h1>La tecnología que te mueve</h1>
+      <p>Móviles, ordenadores y gadgets explicados de forma sencilla para que elijas bien.</p>
+      <a href="productos.html" class="boton">Ver productos</a>
+    </section>
+
+    <!-- CINTA INFINITA DE LOGOTIPOS (Simple Icons, licencia CC0).
+         El color va en la propia URL: cdn.simpleicons.org/marca/COLOR.
+         Los logotipos están repetidos dos veces para que el bucle no se note;
+         la copia lleva alt="" y aria-hidden="true" para que los lectores
+         de pantalla no la lean dos veces -->
+    <div class="cinta">
+      <div class="cinta-pista">
+        <img src="https://cdn.simpleicons.org/apple/38bdf8" alt="Logotipo de Apple" width="48" height="48">
+        <img src="https://cdn.simpleicons.org/samsung/b6c2d4" alt="Logotipo de Samsung" width="48" height="48">
+        <img src="https://cdn.simpleicons.org/google/38bdf8" alt="Logotipo de Google" width="48" height="48">
+        <img src="https://cdn.simpleicons.org/xiaomi/b6c2d4" alt="Logotipo de Xiaomi" width="48" height="48">
+        <img src="https://cdn.simpleicons.org/sony/38bdf8" alt="Logotipo de Sony" width="48" height="48">
+        <img src="https://cdn.simpleicons.org/lenovo/b6c2d4" alt="Logotipo de Lenovo" width="48" height="48">
+        <img src="https://cdn.simpleicons.org/asus/38bdf8" alt="Logotipo de ASUS" width="48" height="48">
+        <img src="https://cdn.simpleicons.org/hp/b6c2d4" alt="Logotipo de HP" width="48" height="48">
+        <img src="https://cdn.simpleicons.org/apple/38bdf8" alt="" aria-hidden="true" width="48" height="48">
+        <img src="https://cdn.simpleicons.org/samsung/b6c2d4" alt="" aria-hidden="true" width="48" height="48">
+        <img src="https://cdn.simpleicons.org/google/38bdf8" alt="" aria-hidden="true" width="48" height="48">
+        <img src="https://cdn.simpleicons.org/xiaomi/b6c2d4" alt="" aria-hidden="true" width="48" height="48">
+        <img src="https://cdn.simpleicons.org/sony/38bdf8" alt="" aria-hidden="true" width="48" height="48">
+        <img src="https://cdn.simpleicons.org/lenovo/b6c2d4" alt="" aria-hidden="true" width="48" height="48">
+        <img src="https://cdn.simpleicons.org/asus/38bdf8" alt="" aria-hidden="true" width="48" height="48">
+        <img src="https://cdn.simpleicons.org/hp/b6c2d4" alt="" aria-hidden="true" width="48" height="48">
+      </div>
+    </div>
+
+    <!-- DESTACADOS EN BENTO GRID: casillas de distintos tamaños -->
+    <section class="seccion">
+      <h2>Destacados</h2>
+      <div class="bento">
+
+        <!-- Casilla grande: el producto estrella -->
+        <article class="bento-caja bento-grande">
+          <span class="etiqueta">Nuevo</span>
+          <img src="img/iphone-17-pro-max.webp" alt="Parte trasera de un iPhone 17 Pro Max plateado con sus tres cámaras, sobre un portátil con el logo de Apple" width="800" height="533">
+          <p class="bento-categoria">Móvil estrella</p>
+          <h3>iPhone 17 Pro Max</h3>
+          <a href="productos.html#moviles" class="enlace-tarjeta">Ver móviles →</a>
+        </article>
+
+        <!-- Casilla ancha -->
+        <article class="bento-caja bento-ancha">
+          <p class="bento-categoria">💻 Ordenadores</p>
+          <h3>Portátiles para estudiar y jugar</h3>
+          <a href="productos.html#ordenadores" class="enlace-tarjeta enlace-claro">Ver ordenadores →</a>
+        </article>
+
+        <!-- Casillas pequeñas -->
+        <article class="bento-caja bento-peq1">
+          <p class="bento-categoria">🎧 Gadgets</p>
+          <h3>Auriculares y relojes</h3>
+          <a href="productos.html#gadgets" class="enlace-tarjeta">Ver gadgets →</a>
+        </article>
+
+        <article class="bento-caja bento-peq2 bento-oferta">
+          <span class="etiqueta">Oferta</span>
+          <p class="bento-categoria">Esta semana</p>
+          <h3>Hasta -20 %</h3>
+          <!-- Precio antiguo tachado y precio nuevo (Galaxy Buds3 Pro) -->
+          <p class="bento-precio">
+            <del><span class="solo-lector">Antes: </span>249 €</del>
+            <span><span class="solo-lector">Ahora: </span>199 €</span>
+          </p>
+          <a href="productos.html#gadgets" class="enlace-tarjeta enlace-claro">Galaxy Buds3 Pro →</a>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- VÍDEO PROPIO con la etiqueta <video> (distinto del iframe de YouTube):
+         - controls: muestra los botones de play, pausa, volumen y pantalla completa
+         - poster: imagen que se ve antes de darle al play
+         - preload="metadata": solo descarga la duración y el tamaño, no el vídeo entero
+         - <source> indica el archivo y su formato; el texto de dentro solo
+           aparece si el navegador no puede reproducir vídeo -->
+    <section class="seccion">
+      <h2>NEXTECH en 8 segundos</h2>
+      <div class="video">
+        <video controls poster="img/poster-intro.webp" preload="metadata" width="1280" height="720">
+          <source src="video/intro-nextech.mp4" type="video/mp4">
+          Tu navegador no puede reproducir este vídeo.
+        </video>
+      </div>
+      <p class="video-pie">Vídeo de presentación creado para NEXTECH</p>
+    </section>
+
+    <!-- VÍDEO DE YOUTUBE: presentación oficial de Apple.
+         Uso youtube-nocookie.com (modo de privacidad mejorada: YouTube no
+         guarda cookies hasta que se pulsa play) y loading="lazy" para que
+         el vídeo solo se cargue al llegar a esta parte de la página -->
+    <section class="seccion">
+      <h2>Así presentó Apple el iPhone 17 Pro Max</h2>
+      <div class="video">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/H3KnMyojEQU"
+          title="Vídeo de YouTube: Apple Event del 9 de septiembre de 2025, presentación del iPhone 17 Pro y el iPhone 17 Pro Max"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen></iframe>
+      </div>
+      <p class="video-pie">Vídeo: Apple · Apple Event del 9 de septiembre de 2025</p>
+    </section>
+
+    <!-- Ventajas -->
+    <section class="seccion">
+      <h2>¿Por qué NEXTECH?</h2>
+      <ul class="ventajas">
+        <li>Comparativas claras y sin letra pequeña</li>
+        <li>Asesoramiento personalizado gratis</li>
+        <li>Novedades cada semana</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer class="pie">
+    <p>&copy; 2026 NEXTECH · Yasin Gheziel Lachiri</p>
+    <p class="pie-credito">Logotipos de <a href="https://simpleicons.org" target="_blank" rel="noopener">Simple Icons</a> (licencia CC0). Las marcas pertenecen a sus propietarios.</p>
+  </footer>
+
+</body>
+</html>
